@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>VR Car Drive Simulation</title>
+
+  <meta http-equiv="Access-Control-Allow-Origin" content="*" />
+  
+  <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+  <script
+    src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.min.js"></script>
+  <script src="https://unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
+  <script src="https://recast-api.donmccurdy.com/aframe-inspector-plugin-recast.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+  <script src = "speed.js"> </script>
+  <script src = "drive.js"></script>
+
+
+</head>
+
+<body>
+
+  <a-scene inspector-plugin-recast>
+    <a-assets>
+    <a-asset-item id = "city" src = "city/scene.gltf">
+    </a-asset-item>
+    <a-asset-item id = "accelerator" src = "accelerator_pedal/scene.gltf"></a-asset-item>
+    <a-asset-item id = "steering" src = "./volkswagen_steering_wheel/scene.gltf"></a-asset-item>
+    </a-assets>
+   
+    <a-entity id = "environment" gltf-model='#city' position = "-50 -20 -200" scale = "0.10 0.10 0.10" rotation = "0 360 0 "></a-entity>
+
+    
+    <a-entity 
+    id="camera-rig" movement-controls="speed: 2; constrainToNavMesh: true" position="0 1 5" rotation="0 0 0" game = "play" drive>
+
+    
+    <a-entity id = "camera" camera position = "0 1.5 0" rotation = "0 0 0" look-controls = "pointerLockEnabled : False" >
+        <a-entity id = "accelerator" gltf-model='#accelerator' position = "-2 -1 -2" scale = "0.005 0.005 0.005" rotation = " 0 180"></a-entity>
+        <a-entity id = "control-wheel" gltf-model='#steering' position = "2 -1.4 -2" rotation= "0 0 0" scale = "0.02 0.02 0.02"></a-entity>
+
+        <a-entity id = "timer"position="0 5 -7"
+          text = "align:center; color: red;width:10;height:20;value:00:00" >
+        </a-entity>
+
+        <a-entity id = "over"position="1.7 1 -3"
+          text = "align:center; color: red;width:10;height:20;value:Keep trying!" visible  = false>
+        </a-entity>
+    </a-entity>
+
+    </a-entity>
+
+
+  </a-scene>
+
+
+  
+</body>
+
+</html>
